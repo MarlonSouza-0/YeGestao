@@ -5,7 +5,7 @@ import 'package:gestao/models/Pressao.dart';
 
 class ListaPressao extends StatefulWidget {
   final String idUsuario;
-  const ListaPressao({required this.idUsuario});
+  const ListaPressao({super.key, required this.idUsuario});
 
   @override
   State<ListaPressao> createState() => _ListaPressaoState();
@@ -26,7 +26,7 @@ class _ListaPressaoState extends State<ListaPressao> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -34,26 +34,26 @@ class _ListaPressaoState extends State<ListaPressao> {
             Navigator.pop(context); // Navega para a tela anterior
           },
         ),
-        title: Text(
+        title: const Text(
           "Pressão Arterial",
           style: TextStyle(fontSize: 20, color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           formularioPressao();
         },
-        child: Icon(
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
+        child: const Icon(
           Icons.add,
           color: Colors.black,
         ),
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
       ),
       body: (pressaoAferida.isEmpty)
-          ? Center(
+          ? const Center(
               child: Text("Nenhuma pressão aferida encontrada"),
             )
           : RefreshIndicator(
@@ -67,12 +67,12 @@ class _ListaPressaoState extends State<ListaPressao> {
                     2: FixedColumnWidth(100.0),
                   },
                   children: [
-                    TableRow(
+                    const TableRow(
                       decoration: BoxDecoration(color: Color(0xFF7b8d93)),
                       children: [
                         TableCell(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0),
                             child: Text(
                               'Data',
                               textAlign: TextAlign.center,
@@ -84,7 +84,7 @@ class _ListaPressaoState extends State<ListaPressao> {
                         ),
                         TableCell(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0),
                             child: Text(
                               'Pressão Aferida',
                               textAlign: TextAlign.center,
@@ -96,7 +96,7 @@ class _ListaPressaoState extends State<ListaPressao> {
                         ),
                         TableCell(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0),
                             child: Text(
                               'Status',
                               textAlign: TextAlign.center,
@@ -113,7 +113,7 @@ class _ListaPressaoState extends State<ListaPressao> {
                         children: [
                           TableCell(
                             child: Container(
-                              color: Color(0xFFbec5c7),
+                              color: const Color(0xFFbec5c7),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
@@ -125,20 +125,20 @@ class _ListaPressaoState extends State<ListaPressao> {
                           ),
                           TableCell(
                             child: Container(
-                              color: Color(0xFF7b8d93),
+                              color: const Color(0xFF7b8d93),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   pressao.status,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                               ),
                             ),
                           ),
                           TableCell(
                             child: Container(
-                              color: Color(0xFFbec5c7),
+                              color: const Color(0xFFbec5c7),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
@@ -164,7 +164,7 @@ class _ListaPressaoState extends State<ListaPressao> {
 
     TextEditingController statusController = TextEditingController();
     TextEditingController dataController = TextEditingController();
-    final _formKey = GlobalKey<FormState>(); // Chave global para o formulário
+    final formKey = GlobalKey<FormState>(); // Chave global para o formulário
 
     showModalBottomSheet(
       context: context,
@@ -186,15 +186,15 @@ class _ListaPressaoState extends State<ListaPressao> {
             padding: const EdgeInsets.all(32.0),
             child: SingleChildScrollView(
               child: Form(
-                key: _formKey,
+                key: formKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(labelTitle,
-                        style: Theme.of(context).textTheme.headline5),
+                        style: Theme.of(context).textTheme.headlineSmall),
                     TextFormField(
                       controller: dataController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Dia da Aferição da Pressão",
                         labelStyle: TextStyle(
                             color: Colors
@@ -220,8 +220,8 @@ class _ListaPressaoState extends State<ListaPressao> {
                         ),
                       ),
                       cursorColor:
-                          Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
-                      style: TextStyle(color: Colors.black), // Cor do texto
+                          const Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
+                      style: const TextStyle(color: Colors.black), // Cor do texto
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira a data da aferição.';
@@ -258,8 +258,8 @@ class _ListaPressaoState extends State<ListaPressao> {
                         ),
                       ),
                       cursorColor:
-                          Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
-                      style: TextStyle(color: Colors.black),
+                          const Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
+                      style: const TextStyle(color: Colors.black),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira a pressão aferida.';
@@ -280,17 +280,17 @@ class _ListaPressaoState extends State<ListaPressao> {
                             Navigator.pop(context);
                           },
                           child: Text(labelSkipButtom,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Color.fromRGBO(71, 146, 121, 0.819))),
                         ),
                         const SizedBox(width: 16),
                         ElevatedButton(
                           onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
+                            if (formKey.currentState!.validate()) {
                               // Se o formulário for válido, continue com a lógica
                               String pressaoAferidaText = statusController.text;
-                              String status =
-                                  _determinePressaoStatus(pressaoAferidaText);
+                              // String status =
+                              //     _determinePressaoStatus(pressaoAferidaText);
 
                               Pressao pressao = Pressao(
                                 id: const Uuid().v1(),
@@ -313,7 +313,7 @@ class _ListaPressaoState extends State<ListaPressao> {
                             }
                           },
                           child: Text(labelConfirmationButtom,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Color.fromRGBO(71, 146, 121, 0.819))),
                         ),
                       ],

@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:gestao/componentes/Editor.dart';
 import 'package:gestao/models/Exame.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -8,14 +6,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gestao/models/Usuario.dart';
-import 'package:gestao/pages/login.dart';
-import 'package:gestao/pages/listaExame.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class FormularioExame extends StatefulWidget {
   final String idUsuario;
-  FormularioExame({required this.idUsuario});
+  const FormularioExame({super.key, required this.idUsuario});
   @override
   State<StatefulWidget> createState() {
     return FormularioExameState();
@@ -23,7 +18,7 @@ class FormularioExame extends StatefulWidget {
 }
 
 class FormularioExameState extends State<FormularioExame> {
-  File? _fotoSelecionada;
+  // File? _fotoSelecionada;
   var _arquivo;
   var _arquivoNome;
   var caminho;
@@ -41,7 +36,7 @@ class FormularioExameState extends State<FormularioExame> {
 
 //sem permissão para pegar arquivos por enquanto, não funciona
   void selecionarArquivos() async {
-    final permissao = await Permission.storage;
+    const permissao = Permission.storage;
     if (permissao != PermissionStatus.granted) {
       await permissao.request();
     } else {
@@ -73,13 +68,13 @@ class FormularioExameState extends State<FormularioExame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Text(
+        iconTheme: const IconThemeData(color: Colors.black),
+        title: const Text(
           'Adicionar Exame',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -89,7 +84,7 @@ class FormularioExameState extends State<FormularioExame> {
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 controller: _controladorNomeExame,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: 'Nome Exame', hintText: 'Ex: Exame de Sangue'),
                 keyboardType: TextInputType.text,
               ),
@@ -98,13 +93,13 @@ class FormularioExameState extends State<FormularioExame> {
               padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                 controller: _controladorDataExame,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: "Data do Exame",
                     hintText: "Ex: 24/04/2024",
                     icon: Icon(Icons.calendar_today)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -113,21 +108,21 @@ class FormularioExameState extends State<FormularioExame> {
                 IconButton(
                   onPressed: () {
                     selecionarArquivos();
-                    File? foto = _fotoSelecionada;
+                    // File? foto = _fotoSelecionada;
                   },
-                  icon: Icon(Icons.attach_file),
+                  icon: const Icon(Icons.attach_file),
                   tooltip: 'Selecionar Arquivo',
                 ),
                 IconButton(
                   onPressed: () {
                     _fotoCamera();
                   },
-                  icon: Icon(Icons.camera_alt),
+                  icon: const Icon(Icons.camera_alt),
                   tooltip: 'Abrir Câmera',
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 340,
             ),
             Padding(
@@ -168,11 +163,11 @@ class FormularioExameState extends State<FormularioExame> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
+                  backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
                   padding:
-                      EdgeInsets.symmetric(horizontal: 140.0, vertical: 10.0),
+                      const EdgeInsets.symmetric(horizontal: 140.0, vertical: 10.0),
                 ),
-                child: Text(
+                child: const Text(
                   'Confirmar',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),

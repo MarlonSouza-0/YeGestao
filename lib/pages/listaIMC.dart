@@ -4,7 +4,7 @@ import 'package:gestao/models/IMC.dart';
 
 class ListaIMC extends StatefulWidget {
   final String idUsuario;
-  const ListaIMC({required this.idUsuario});
+  const ListaIMC({super.key, required this.idUsuario});
 
   @override
   State<ListaIMC> createState() => _ListaIMCState();
@@ -22,7 +22,7 @@ class _ListaIMCState extends State<ListaIMC> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -30,13 +30,13 @@ class _ListaIMCState extends State<ListaIMC> {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           "IMC",
           style: TextStyle(fontSize: 20, color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: firestore
@@ -47,15 +47,15 @@ class _ListaIMCState extends State<ListaIMC> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Center(child: Text("Erro ao carregar os dados"));
+            return const Center(child: Text("Erro ao carregar os dados"));
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text("Nenhuma medida aferida encontrada"));
+            return const Center(child: Text("Nenhuma medida aferida encontrada"));
           }
 
           var imcList = snapshot.data!.docs.map((doc) {
@@ -83,12 +83,12 @@ class _ListaIMCState extends State<ListaIMC> {
                   2: FlexColumnWidth(),
                 },
                 children: [
-                  TableRow(
+                  const TableRow(
                     decoration: BoxDecoration(color: Color(0xFF7b8d93)),
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             'Data',
                             textAlign: TextAlign.center,
@@ -99,7 +99,7 @@ class _ListaIMCState extends State<ListaIMC> {
                       ),
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             'Valor IMC',
                             textAlign: TextAlign.center,
@@ -110,7 +110,7 @@ class _ListaIMCState extends State<ListaIMC> {
                       ),
                       TableCell(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             'Status',
                             textAlign: TextAlign.center,
@@ -126,33 +126,33 @@ class _ListaIMCState extends State<ListaIMC> {
                       children: [
                         TableCell(
                           child: Container(
-                            color: Color(0xFFbec5c7),
+                            color: const Color(0xFFbec5c7),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 imc['data']??"",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.black),
+                                style: const TextStyle(color: Colors.black),
                               ),
                             ),
                           ),
                         ),
                         TableCell(
                           child: Container(
-                            color: Color(0xFF7b8d93),
+                            color: const Color(0xFF7b8d93),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 imc['valorIMC']??"",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ),
                           ),
                         ),
                         TableCell(
                           child: Container(
-                            color: Color(0xFFbec5c7),
+                            color: const Color(0xFFbec5c7),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(

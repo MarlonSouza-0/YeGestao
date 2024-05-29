@@ -1,13 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:gestao/models/Exame.dart';
-import 'package:gestao/pages/formularioExame.dart';
-import 'package:gestao/pages/listaExame.dart';
-import 'package:gestao/pages/listaGlicemia.dart';
-import 'package:gestao/pages/listaPesoAltura.dart';
-import 'package:gestao/pages/listaPressao.dart';
-import 'package:gestao/pages/login.dart';
 import 'package:gestao/pages/telaPrincipal.dart';
 import 'firebase_options.dart';
 
@@ -33,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(71, 146, 121, 0.612)),
         useMaterial3: true,
       ),
-      home: TelaPrincipal(nome: "victor", idUsuario: "idUsuario"),      
+      home: const TelaPrincipal(nome: "victor", idUsuario: "idUsuario"),      
     );
   }
 }

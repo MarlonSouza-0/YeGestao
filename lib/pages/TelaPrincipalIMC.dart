@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class TelaIMC extends StatelessWidget {
+  const TelaIMC({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Informações do Usuário'),
+        title: const Text('Informações do Usuário'),
       ),
-      body: Padding(
+      body: const Padding(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,12 +48,12 @@ class UserInfoItem extends StatelessWidget {
   final Color backgroundColor;
 
   const UserInfoItem({
-    Key? key,
+    super.key,
     required this.title,
     required this.date,
     required this.value,
     required this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +62,11 @@ class UserInfoItem extends StatelessWidget {
       children: [
         Container(
           color: backgroundColor,
-          padding: EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Center(
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
                 color: Colors.white,
@@ -72,12 +74,12 @@ class UserInfoItem extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Container(
-          padding: EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Row(
             children: [
-              Expanded(
+              const Expanded(
                 flex: 1,
                 child: Text(
                   'Data:',
@@ -92,7 +94,7 @@ class UserInfoItem extends StatelessWidget {
                 flex: 1,
                 child: Text(
                   date,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Colors.black,
                   ),
@@ -102,14 +104,14 @@ class UserInfoItem extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Row(
             children: [
               Expanded(
                 flex: 1,
                 child: Text(
                   '$title:',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
@@ -120,7 +122,7 @@ class UserInfoItem extends StatelessWidget {
                 flex: 1,
                 child: Text(
                   value,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Colors.black,
                   ),
@@ -129,7 +131,7 @@ class UserInfoItem extends StatelessWidget {
             ],
           ),
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }

@@ -5,7 +5,7 @@ import 'package:gestao/models/IMC.dart';
 
 class ListaPesoAltura extends StatefulWidget {
   final String idUsuario;
-  const ListaPesoAltura({required this.idUsuario});
+  const ListaPesoAltura({super.key, required this.idUsuario});
 
   @override
   State<ListaPesoAltura> createState() => _ListaPesoAlturaState();
@@ -26,7 +26,7 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -34,26 +34,26 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
             Navigator.pop(context); // Navega para a tela anterior
           },
         ),
-        title: Text(
+        title: const Text(
           "Medidas",
           style: TextStyle(fontSize: 20, color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           formularioIMC();
         },
-        child: Icon(
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
+        child: const Icon(
           Icons.add,
           color: Colors.black,
         ),
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
       ),
       body: (IMCAferido.isEmpty)
-    ? Center(
+    ? const Center(
         child: Text("Nenhuma medida aferida encontrada"),
       )
     : RefreshIndicator(
@@ -67,12 +67,12 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
               2: FlexColumnWidth(), // A coluna Status agora terá mais espaço
             },
             children: [
-              TableRow(
+              const TableRow(
                 decoration: BoxDecoration(color: Color(0xFF7b8d93)),
                 children: [
                   TableCell(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Data',
                         textAlign: TextAlign.center,
@@ -83,7 +83,7 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
                   ),
                   TableCell(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Peso',
                         textAlign: TextAlign.center,
@@ -94,7 +94,7 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
                   ),
                   TableCell(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Altura',
                         textAlign: TextAlign.center,
@@ -110,33 +110,33 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
                   children: [
                     TableCell(
                       child: Container(
-                        color:Color(0xFFbec5c7),
+                        color:const Color(0xFFbec5c7),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             imc.data,
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.black),
+                            style: const TextStyle(color: Colors.black),
                           ),
                         ),
                       ),
                     ),
                     TableCell(
                       child: Container(
-                        color: Color(0xFF7b8d93),
+                        color: const Color(0xFF7b8d93),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             imc.peso,
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
                     ),
                     TableCell(
                       child: Container(
-                        color: Color(0xFFbec5c7),
+                        color: const Color(0xFFbec5c7),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
@@ -164,7 +164,7 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
   TextEditingController dataController = TextEditingController();
   TextEditingController pesoController = TextEditingController();
   TextEditingController alturaController = TextEditingController();
-  final _formKey = GlobalKey<FormState>(); // Chave global para o formulário
+  final formKey = GlobalKey<FormState>(); // Chave global para o formulário
 
   showModalBottomSheet(
     context: context,
@@ -186,12 +186,12 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
           padding: const EdgeInsets.all(32.0),
           child: SingleChildScrollView(
             child: Form(
-              key: _formKey,
+              key: formKey,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(labelTitle,
-                      style: Theme.of(context).textTheme.headline5),
+                      style: Theme.of(context).textTheme.headlineSmall),
                   TextFormField(
                     controller: dataController,
                     decoration: const InputDecoration(
@@ -220,8 +220,8 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
                       ),
                     ),
                     cursorColor:
-                        Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
-                    style: TextStyle(color: Colors.black),
+                        const Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
+                    style: const TextStyle(color: Colors.black),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor, insira a data.';
@@ -258,8 +258,8 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
                       ),
                     ),
                     cursorColor:
-                        Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
-                    style: TextStyle(color: Colors.black),
+                        const Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
+                    style: const TextStyle(color: Colors.black),
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -301,8 +301,8 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
                       ),
                     ),
                     cursorColor:
-                        Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
-                    style: TextStyle(color: Colors.black),
+                        const Color.fromRGBO(71, 146, 121, 0.612), // Cor do cursor
+                    style: const TextStyle(color: Colors.black),
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -314,7 +314,8 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
                         return 'Insira uma altura válida.';
                       }
                       return null;
-                     }},
+                     }
+                      return null;},
                   ),
                   const SizedBox(height: 16),
                   Row(
@@ -325,14 +326,14 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
                           Navigator.pop(context);
                         },
                         child: Text(labelSkipButton,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color:
                                     Color.fromRGBO(71, 146, 121, 0.819))),
                       ),
                       const SizedBox(width: 16),
                       ElevatedButton(
                         onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                             // Se o formulário for válido, continue com a lógica
                             String data = dataController.text;
                             String peso = pesoController.text;
@@ -364,7 +365,7 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
                           }
                         },
                         child: Text(labelConfirmationButton,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color:
                                     Color.fromRGBO(71, 146, 121, 0.819))),
                       ),
@@ -435,7 +436,7 @@ class _ListaPesoAlturaState extends State<ListaPesoAltura> {
     }
   }
 
-  String _getIMCStatus(String peso, String altura) {
-    return _determineIMCStatus(peso, altura);
-  }
+  // String _getIMCStatus(String peso, String altura) {
+  //   return _determineIMCStatus(peso, altura);
+  // }
 }

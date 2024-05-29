@@ -1,24 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:gestao/models/Exame.dart';
 import 'package:gestao/models/IMC.dart';
 import 'package:gestao/models/Glicemia.dart';
-import 'package:gestao/pages/TelaPrincipalIMC.dart';
-import 'package:gestao/pages/formularioExame.dart';
-import 'package:gestao/pages/formularioIMC.dart';
 import 'package:gestao/pages/listaExame.dart';
 import 'package:gestao/pages/listaGlicemia.dart';
 import 'package:gestao/pages/listaIMC.dart';
 import 'package:gestao/pages/listaPesoAltura.dart';
 import 'package:gestao/pages/listaPressao.dart';
-import 'package:gestao/pages/login.dart';
 import 'package:gestao/models/Pressao.dart'; // Certifique-se de que este caminho está correto
 
 class TelaPrincipal extends StatefulWidget {
   final String nome;
   final String idUsuario;
 
-  TelaPrincipal({required this.nome, required this.idUsuario});
+  const TelaPrincipal({super.key, required this.nome, required this.idUsuario});
 
   @override
   _TelaPrincipalState createState() => _TelaPrincipalState();
@@ -32,27 +27,27 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "YE Gestão de Saúde",
             style: TextStyle(fontSize: 20),
           ),
-          backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
+          backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
           centerTitle: true,
           automaticallyImplyLeading: false,
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
-                  '${widget.nome}',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                  widget.nome,
+                  style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 2,
@@ -375,7 +370,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                     )
                   ],
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 3,
@@ -420,14 +415,14 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                     ),
                   ],
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Padding(
-                  padding: EdgeInsets.only(left: 260, bottom: 50),
+                  padding: const EdgeInsets.only(left: 260, bottom: 50),
                   child: TextButton(
                     onPressed: () {
                       // Adicione a navegação para a tela "Sobre nós", se necessário.
                     },
-                    child: Text(
+                    child: const Text(
                       'Sobre nós',
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
@@ -494,23 +489,23 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 10,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
         child: Padding(
-          padding: EdgeInsets.all(30),
+          padding: const EdgeInsets.all(30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
-                style: TextStyle(fontSize: 14, color: Colors.grey),
+                style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 value,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
@@ -540,16 +535,16 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 2,
                 blurRadius: 10,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               ),
             ],
           ),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,

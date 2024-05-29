@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class formularioIMC extends StatelessWidget {
+  const formularioIMC({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Informações do Usuário'),
+        title: const Text('Informações do Usuário'),
       ),
-      body: Padding(
+      body: const Padding(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -42,11 +44,11 @@ class UserInfoItem extends StatelessWidget {
   final String value;
 
   const UserInfoItem({
-    Key? key,
+    super.key,
     required this.title,
     required this.date,
     required this.value,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,19 +57,19 @@ class UserInfoItem extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Row(
           children: [
             Expanded(
               flex: 1,
               child: Text(
                 'Data: $date',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                 ),
               ),
@@ -76,14 +78,14 @@ class UserInfoItem extends StatelessWidget {
               flex: 1,
               child: Text(
                 value,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                 ),
               ),
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }

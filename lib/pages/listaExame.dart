@@ -4,7 +4,6 @@ import 'package:gestao/pages/exapansaoExame.dart';
 import 'package:gestao/pages/formularioExame.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 //fazer pegar dados do firebase
 //corretamente pegar apenas pdf das imagens como nome do arquivo
@@ -13,7 +12,7 @@ class ListaExame extends StatefulWidget {
   final String idUsuario;
   final List<Exame> _exames = [];
 
-  ListaExame({required this.idUsuario});
+  ListaExame({super.key, required this.idUsuario});
 
   @override
   State<StatefulWidget> createState() {
@@ -35,15 +34,16 @@ class ListaExameState extends State<ListaExame> {
         .collection('Exames');
   }
 
+  @override
   Widget build(BuildContext context) {
-    int quantia;
-    var idAtual = widget.idUsuario;
+    // int quantia;
+    // var idAtual = widget.idUsuario;
 
-    var exames = firestore.collection('Usuário/$idAtual/Exames');
+    // var exames = firestore.collection('Usuário/$idAtual/Exames');
 
-    final CollectionReference<Map<String, dynamic>> examesAtuais = exames;
+    // final CollectionReference<Map<String, dynamic>> examesAtuais = exames;
 
-    var docs = exames.get();
+    // var docs = exames.get();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -52,7 +52,7 @@ class ListaExameState extends State<ListaExame> {
             color: Colors.black,
           ),
         ),
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
@@ -65,7 +65,7 @@ class ListaExameState extends State<ListaExame> {
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return Text('');
+                return const Text('');
               default:
                 if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
@@ -78,7 +78,6 @@ class ListaExameState extends State<ListaExame> {
                     var membro = Exame.fromMap(data);
                     widget._exames.add(membro);
                   }
-                  ;
                   return ListView.builder(
                     itemCount: querySnapshot.docs.length,
                     itemBuilder: (context, indice) {
@@ -98,7 +97,7 @@ class ListaExameState extends State<ListaExame> {
             );
           }));
           future.then((exameRecebido) {
-            Future.delayed(Duration(seconds: 1), () {
+            Future.delayed(const Duration(seconds: 1), () {
               debugPrint('chegou no then do future');
               debugPrint('$exameRecebido');
               setState(() {
@@ -107,11 +106,11 @@ class ListaExameState extends State<ListaExame> {
             });
           });
         },
-        child: Icon(
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
+        child: const Icon(
           Icons.add,
           color: Colors.black,
         ),
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
       ),
     );
   }
@@ -120,13 +119,13 @@ class ListaExameState extends State<ListaExame> {
 class itemExame extends StatelessWidget {
   final Exame _exame;
 
-  itemExame(this._exame);
+  const itemExame(this._exame, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
         child: ListTile(
-      leading: Icon(Icons.medication),
+      leading: const Icon(Icons.medication),
       title: Text(_exame.data.toString()),
       subtitle: Text(_exame.nomeExame.toString()),
       //testando se ta arquivando corretamente as informações

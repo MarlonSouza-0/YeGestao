@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gestao/models/Consultas.dart';
+import 'package:gestao/pages/consultas.dart';
 
 class ListaConsultas extends StatefulWidget {
   final String idUsuario;
-  const ListaConsultas({required this.idUsuario});
+  const ListaConsultas({super.key, required this.idUsuario});
 
   @override
   State<ListaConsultas> createState() => _ListaConsultasState();
@@ -18,7 +18,7 @@ class _ListaConsultasState extends State<ListaConsultas> {
   }
 
   void formularioConsulta() {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     TextEditingController especialidadeController = TextEditingController();
     TextEditingController dataController = TextEditingController();
     TextEditingController horarioController = TextEditingController();
@@ -41,17 +41,17 @@ class _ListaConsultasState extends State<ListaConsultas> {
             padding: const EdgeInsets.all(32.0),
             child: SingleChildScrollView(
               child: Form(
-                key: _formKey,
+                key: formKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       "Adicionar Consulta",
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     TextFormField(
                       controller: especialidadeController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Especialidade",
                         labelStyle: TextStyle(color: Colors.black),
                         focusedBorder: UnderlineInputBorder(
@@ -68,8 +68,8 @@ class _ListaConsultasState extends State<ListaConsultas> {
                           borderSide: BorderSide(color: Colors.red),
                         ),
                       ),
-                      cursorColor: Color.fromRGBO(71, 146, 121, 0.612),
-                      style: TextStyle(color: Colors.black),
+                      cursorColor: const Color.fromRGBO(71, 146, 121, 0.612),
+                      style: const TextStyle(color: Colors.black),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira a especialidade.';
@@ -80,7 +80,7 @@ class _ListaConsultasState extends State<ListaConsultas> {
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: dataController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Data",
                         labelStyle: TextStyle(color: Colors.black),
                         focusedBorder: UnderlineInputBorder(
@@ -97,8 +97,8 @@ class _ListaConsultasState extends State<ListaConsultas> {
                           borderSide: BorderSide(color: Colors.red),
                         ),
                       ),
-                      cursorColor: Color.fromRGBO(71, 146, 121, 0.612),
-                      style: TextStyle(color: Colors.black),
+                      cursorColor: const Color.fromRGBO(71, 146, 121, 0.612),
+                      style: const TextStyle(color: Colors.black),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira a data.';
@@ -109,7 +109,7 @@ class _ListaConsultasState extends State<ListaConsultas> {
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: horarioController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Horário",
                         labelStyle: TextStyle(color: Colors.black),
                         focusedBorder: UnderlineInputBorder(
@@ -126,8 +126,8 @@ class _ListaConsultasState extends State<ListaConsultas> {
                           borderSide: BorderSide(color: Colors.red),
                         ),
                       ),
-                      cursorColor: Color.fromRGBO(3, 8, 7, 0.612),
-                      style: TextStyle(color: Colors.black),
+                      cursorColor: const Color.fromRGBO(3, 8, 7, 0.612),
+                      style: const TextStyle(color: Colors.black),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira o horário.';
@@ -138,7 +138,7 @@ class _ListaConsultasState extends State<ListaConsultas> {
                     const SizedBox(height: 10),
                     TextFormField(
                       controller: resumoController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Resumo da consulta",
                         labelStyle: TextStyle(color: Colors.black),
                         focusedBorder: UnderlineInputBorder(
@@ -155,8 +155,8 @@ class _ListaConsultasState extends State<ListaConsultas> {
                           borderSide: BorderSide(color: Colors.red),
                         ),
                       ),
-                      cursorColor: Color.fromRGBO(71, 146, 121, 0.612),
-                      style: TextStyle(color: Colors.black),
+                      cursorColor: const Color.fromRGBO(71, 146, 121, 0.612),
+                      style: const TextStyle(color: Colors.black),
                       maxLines: 5,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -168,7 +168,7 @@ class _ListaConsultasState extends State<ListaConsultas> {
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: retornoController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Retorno",
                         labelStyle: TextStyle(color: Colors.black),
                         focusedBorder: UnderlineInputBorder(
@@ -185,8 +185,8 @@ class _ListaConsultasState extends State<ListaConsultas> {
                           borderSide: BorderSide(color: Colors.red),
                         ),
                       ),
-                      cursorColor: Color.fromRGBO(71, 146, 121, 0.612),
-                      style: TextStyle(color: Colors.black),
+                      cursorColor: const Color.fromRGBO(71, 146, 121, 0.612),
+                      style: const TextStyle(color: Colors.black),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira o retorno.';
@@ -202,7 +202,7 @@ class _ListaConsultasState extends State<ListaConsultas> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text(
+                          child: const Text(
                             "Cancelar",
                             style: TextStyle(
                               color: Color.fromRGBO(71, 146, 121, 0.819),
@@ -212,7 +212,7 @@ class _ListaConsultasState extends State<ListaConsultas> {
                         const SizedBox(width: 16),
                         ElevatedButton(
                           onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
+                            if (formKey.currentState!.validate()) {
                               await firestore
                                   .collection("Usuários")
                                   .doc(widget.idUsuario)
@@ -228,7 +228,7 @@ class _ListaConsultasState extends State<ListaConsultas> {
                               Navigator.pop(context);
                             }
                           },
-                          child: Text(
+                          child: const Text(
                             "Salvar",
                             style: TextStyle(
                               color: Color.fromRGBO(71, 146, 121, 0.819),
@@ -252,18 +252,18 @@ class _ListaConsultasState extends State<ListaConsultas> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           "Consultas Realizadas",
           style: TextStyle(fontSize: 20, color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: firestore
@@ -274,19 +274,19 @@ class _ListaConsultasState extends State<ListaConsultas> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Center(child: Text("Erro ao carregar os dados"));
+            return const Center(child: Text("Erro ao carregar os dados"));
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text("Sem consultas cadastradas"));
+            return const Center(child: Text("Sem consultas cadastradas"));
           }
 
           Map<String, List<Consultas>> consultasPorEspecialidade = {};
-          snapshot.data!.docs.forEach((doc) {
+          for (var doc in snapshot.data!.docs) {
             var data = doc.data();
             Consultas consulta = Consultas.fromMap(data);
             if (!consultasPorEspecialidade
@@ -294,7 +294,7 @@ class _ListaConsultasState extends State<ListaConsultas> {
               consultasPorEspecialidade[consulta.especialidade] = [];
             }
             consultasPorEspecialidade[consulta.especialidade]!.add(consulta);
-          });
+          }
 
           return RefreshIndicator(
             onRefresh: refresh,
@@ -319,8 +319,8 @@ class _ListaConsultasState extends State<ListaConsultas> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: formularioConsulta,
-        child: Icon(Icons.add),
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
+        child: const Icon(Icons.add),
       ),
     );
   }

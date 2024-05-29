@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 class ExpansaoExame extends StatefulWidget {
   final Exame exameAtual;
 
-  const ExpansaoExame({required this.exameAtual});
+  const ExpansaoExame({super.key, required this.exameAtual});
   @override
   State<StatefulWidget> createState() => expansaoExameState();
 }
@@ -17,24 +17,24 @@ class expansaoExameState extends State<ExpansaoExame> {
   Widget build(BuildContext context) {
     Map teste = widget.exameAtual.toMap();
     String nome = teste['nomeExame'];
-    String URL;
-    Future<String> downloadURLExample() async {
-      var URL = await FirebaseStorage.instance
-          .ref()
-          .child("Flutter.png")
-          .getDownloadURL();
-      return URL;
-    }
+    // String URL;
+    // Future<String> downloadURLExample() async {
+    //   var URL = await FirebaseStorage.instance
+    //       .ref()
+    //       .child("Flutter.png")
+    //       .getDownloadURL();
+    //   return URL;
+    // }
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
           nome,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
           ),
         ),
-        backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
+        backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
         centerTitle: true,
       ),
       body: 
@@ -47,7 +47,7 @@ class expansaoExameState extends State<ExpansaoExame> {
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return Text('');
+                return const Text('');
               default:
                 if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
@@ -57,7 +57,7 @@ class expansaoExameState extends State<ExpansaoExame> {
                   String? imagem = snapshot.data;
                   return InteractiveViewer(
                     panEnabled: false, // Set it to false
-                    boundaryMargin: EdgeInsets.all(100),
+                    boundaryMargin: const EdgeInsets.all(100),
                     minScale: 0.5,
                     maxScale: 2,
                     child: Image.network(

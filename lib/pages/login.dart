@@ -8,7 +8,6 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:uuid/uuid.dart';
 import 'package:gestao/pages/telaPrincipal.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:gestao/componentes/autenticacao.dart';
 
 class login extends StatefulWidget {
   const login({super.key});
@@ -45,11 +44,11 @@ class _loginState extends State<login> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "YE Gestão de Saúde",
             style: TextStyle(fontSize: 20),
           ),
-          backgroundColor: Color.fromRGBO(71, 146, 121, 0.612),
+          backgroundColor: const Color.fromRGBO(71, 146, 121, 0.612),
           centerTitle: true,
         ),
         resizeToAvoidBottomInset: false,
@@ -81,7 +80,7 @@ class _loginState extends State<login> {
                                   return null;
                                 },
                                 controller: controladoremail,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     label: Text("E-mail",
                                         style: TextStyle(
                                             color: Color.fromARGB(
@@ -106,7 +105,7 @@ class _loginState extends State<login> {
                                   return null;
                                 },
                                 controller: controladorsenha,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     label: Text(
                                       "Senha",
                                       style: TextStyle(
@@ -138,11 +137,11 @@ class _loginState extends State<login> {
                                           return null;
                                         },
                                         controller: controladorNome,
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           label: Text(
                                             "Nome",
                                             style: TextStyle(
-                                                color: const Color.fromARGB(
+                                                color: Color.fromARGB(
                                                     255, 44, 44, 44)),
                                           ),
                                           focusedBorder: UnderlineInputBorder(
@@ -157,9 +156,9 @@ class _loginState extends State<login> {
                                             top: 20.0, left: 10.0, right: 10.0),
                                         child: Theme(
                                           data: ThemeData(
-                                              primaryColor: Color.fromARGB(
+                                              primaryColor: const Color.fromARGB(
                                                   255, 44, 44, 44),
-                                              textTheme: TextTheme(
+                                              textTheme: const TextTheme(
                                                   bodyLarge: TextStyle(
                                                       color: Color.fromARGB(
                                                           255, 44, 44, 44)))),
@@ -173,7 +172,7 @@ class _loginState extends State<login> {
                                         ))
                                   ],
                                 )),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             SizedBox(
@@ -215,11 +214,11 @@ class _loginState extends State<login> {
                                                   .collection("Usuários")
                                                   .doc(usuario.id)
                                                   .set(usuario.toMap());
-                                              DocumentSnapshot userSnapshot =
-                                                  await firestore
-                                                      .collection("Usuários")
-                                                      .doc(usuario.id)
-                                                      .get();
+                                              // DocumentSnapshot userSnapshot =
+                                              //     await firestore
+                                              //         .collection("Usuários")
+                                              //         .doc(usuario.id)
+                                              //         .get();
 
                                               // Corrigido aqui
 
@@ -249,7 +248,6 @@ class _loginState extends State<login> {
                                       }
                                     } else {
                                       try {
-                                        ;
                                         QuerySnapshot querySnapshot =
                                             await FirebaseFirestore.instance
                                                 .collection("Usuários")
@@ -281,7 +279,6 @@ class _loginState extends State<login> {
                                             } catch (e) {
                                               print(e);
                                             }
-                                            ;
                                             String userName =
                                                 userSnapshot.get('nome');
                                             print(idAtual);
@@ -310,11 +307,11 @@ class _loginState extends State<login> {
                                   },
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                        Color.fromRGBO(71, 146, 121, 0.612)),
+                                        const Color.fromRGBO(71, 146, 121, 0.612)),
                                   ),
                                   child: Text(
                                     (queroEntrar) ? "Entrar" : "Cadastrar",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Color.fromARGB(255, 44, 44, 44),
                                       fontSize: 20,
                                     ),
@@ -331,9 +328,9 @@ class _loginState extends State<login> {
                                 },
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
-                                      Color.fromARGB(255, 240, 82, 82)),
+                                      const Color.fromARGB(255, 240, 82, 82)),
                                 ),
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(FontAwesomeIcons.google,
@@ -351,7 +348,7 @@ class _loginState extends State<login> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 2),
+                            const SizedBox(height: 2),
                             Padding(
                               padding: const EdgeInsets.only(
                                   right: 10.0, left: 10.0),
@@ -362,7 +359,7 @@ class _loginState extends State<login> {
                                 style: ButtonStyle(
                                     backgroundColor:
                                         MaterialStateProperty.all(Colors.blue)),
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(Icons.facebook, color: Colors.white),
@@ -379,7 +376,7 @@ class _loginState extends State<login> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             TextButton(
@@ -392,7 +389,7 @@ class _loginState extends State<login> {
                                 (queroEntrar)
                                     ? "Ainda não tem conta? Cadastre-se!"
                                     : "Já tem conta? Entre!",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color.fromARGB(255, 44, 44, 44),
                                     fontSize: 20),
                               ),
@@ -402,19 +399,19 @@ class _loginState extends State<login> {
   }
 
   Future<void> _logarComGoogle() async {
-    final GoogleSignIn _logarComGoogle = GoogleSignIn();
+    final GoogleSignIn logarComGoogle = GoogleSignIn();
 
     try {
       final GoogleSignInAccount? googleSignInAccount =
-          await _logarComGoogle.signIn();
+          await logarComGoogle.signIn();
 
       if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
+        // final GoogleSignInAuthentication googleSignInAuthentication =
+        //     await googleSignInAccount.authentication;
 
-        final AuthCredential credential = GoogleAuthProvider.credential(
-            idToken: googleSignInAuthentication.idToken,
-            accessToken: googleSignInAuthentication.accessToken);
+        // final AuthCredential credential = GoogleAuthProvider.credential(
+        //     idToken: googleSignInAuthentication.idToken,
+        //     accessToken: googleSignInAuthentication.accessToken);
 
         // final UserCredential userCredential =
         //     await _fi.signInWithCredential(credential);
